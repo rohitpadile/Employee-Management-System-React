@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
+import EmployeeService from '../services/EmployeeService';
+// import {  useHistory} from 'react-router-dom';
 
 const CreateEmployeeComponent = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [emailId, setEmailId] = useState('');
+    const [saved, setSaved] = useState(false); // State to track if employee is saved
 
     const changeFirstNameHandler = (event) => {
         setFirstName(event.target.value);
@@ -26,6 +29,21 @@ const CreateEmployeeComponent = () => {
             emailId: emailId
         }
         console.log('employee =>', employee);
+        EmployeeService.createEmployee(employee).then(res => {
+            console.log(`${employee.firstName} ${employee.lastName} is sucessfully added`);
+            // history.push('/employees') THIS IS OUTDATED
+            setSaved(true);
+        }).catch(error => {
+            console.log('Error saving employee:', error);
+            // Handle error if needed
+        });
+    }
+    if (saved) {
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <Link to='/employees' className='btn btn-success'>Employee details added successfully. Go to Employees</Link>
+            </div>
+        );
     }
 
     return (
