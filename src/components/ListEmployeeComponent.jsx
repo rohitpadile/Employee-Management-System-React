@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import EmployeeService from '../services/EmployeeService';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function ListEmployeeComponent() {
     const [employees, setEmployees] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         EmployeeService.getEmployees().then(res => {
             setEmployees(res.data);
         });
     }, []);
+
+    const editEmployee = (id) => {
+        navigate(`/update-employee/${id}`);
+    };
 
     return (
         <div>
@@ -34,8 +39,7 @@ function ListEmployeeComponent() {
                                 <td>{employee.lastName}</td>
                                 <td>{employee.emailId}</td>
                                 <td>
-                                    {/* Example action button */}
-                                    {/* <button className='btn btn-info'>Edit</button> */}
+                                    <button onClick={() => editEmployee(employee.id)} className='btn btn-info'>Update</button>
                                 </td>
                             </tr>
                         ))}

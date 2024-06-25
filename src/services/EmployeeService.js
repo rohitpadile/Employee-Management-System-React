@@ -13,6 +13,14 @@ class EmployeeService{
         return axios.post(EMPLOYEE_API_CREATE_EMPLOYEE_URL, employee);
     }
 
+    getEmployeeById(employeeId){
+        return axios.get(EMPLOYEE_API_BASE_URL + '/' + employeeId);
+    }
+
+    updateEmployee(employeeId, employee) {
+        return axios.put(EMPLOYEE_API_BASE_URL + '/' + employeeId, employee);
+    }
+
 }
 //exporting object of this class which can be used inside a component
 export default new EmployeeService() 

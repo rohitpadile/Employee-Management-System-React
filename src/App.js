@@ -5,6 +5,7 @@ import  ListEmployeeComponent from './components/ListEmployeeComponent';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
 import CreateEmployeeComponent from './components/CreateEmployeeComponent';
+import UpdateEmployeeComponent from './components/UpdateEmployeeComponent';
 
 //Switch(Routes in v6) from react-router-dom ensures that only one component renders at the same time
 function App() { //functional component
@@ -14,10 +15,10 @@ function App() { //functional component
           <HeaderComponent/>
           <div className="container">
             <Routes>  
-              {/* http://localhost:3000/employees  */}{/* http://localhost:3000/add-employee  */}
-                  <Route path='/' exact element={<ListEmployeeComponent/>}/>
-                  <Route path='/employees' element={<ListEmployeeComponent/>}/>
-                  <Route path='/add-employee' element={<CreateEmployeeComponent/>}/>
+                  <Route path='/' exact element={<ListEmployeeComponent/>}/>{/* http://localhost:3000 */}
+                  <Route path='/employees' element={<ListEmployeeComponent/>}/>{/* http://localhost:3000/employees  */}
+                  <Route path='/add-employee' element={<CreateEmployeeComponent/>}/>{/* http://localhost:3000/add-employee  */}
+                  <Route path='/update-employee/:id' element={<UpdateEmployeeComponent/>}/>{/* http://localhost:3000/update-employee/1  */}
             </Routes>
           </div>
           <FooterComponent/>
