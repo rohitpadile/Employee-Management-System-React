@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EmployeeService from '../services/EmployeeService';
 
 class ListEmployeeComponent extends React.Component {
     constructor(props){
@@ -7,6 +8,12 @@ class ListEmployeeComponent extends React.Component {
         this.state = {
             employees: []
         }
+    }
+    //this is the best place to call rest api
+    componentDidMount(){
+        EmployeeService.getEmployees().then(res => {
+            this.setState({ employees: res.data});
+        })
     }
     render() {
         return (
