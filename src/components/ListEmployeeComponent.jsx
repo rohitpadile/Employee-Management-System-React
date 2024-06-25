@@ -16,6 +16,14 @@ function ListEmployeeComponent() {
         navigate(`/update-employee/${id}`);
     };
 
+    const deleteEmployee = (id) => {
+        EmployeeService.deleteEmployee(id).then(res => {
+            setEmployees(employees.filter(employee => employee.id !== id)); //FILTERING THE HOME PAGE UI LIST
+        }).catch(error => {
+            console.error('Error deleting employee:', error);
+        });
+    };
+
     return (
         <div>
             <h2 className='text-center mt-4'>Employees List</h2>
@@ -40,6 +48,7 @@ function ListEmployeeComponent() {
                                 <td>{employee.emailId}</td>
                                 <td>
                                     <button onClick={() => editEmployee(employee.id)} className='btn btn-info'>Update</button>
+                                    <button onClick={() => deleteEmployee(employee.id)} className='btn btn-danger'>Delete</button>
                                 </td>
                             </tr>
                         ))}
