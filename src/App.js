@@ -8,20 +8,20 @@ import FooterComponent from './components/FooterComponent';
 // import UpdateEmployeeComponent from './components/UpdateEmployeeComponent';
 import EmployeeFormComponent from './components/EmployeeFormComponent';
 //Switch(Routes in v6) from react-router-dom ensures that only one component renders at the same time
-function App() { //functional component
+function App() {
   return (
-    <div>
+    <div className="d-flex flex-column min-vh-100">
       <Router>
-          <HeaderComponent/>
-          <div className="container">
-            <Routes>  
-                  <Route path='/' exact element={<ListEmployeeComponent/>}/>{/* http://localhost:3000 */}
-                  <Route path='/employees' element={<ListEmployeeComponent/>}/>{/* http://localhost:3000/employees  */}
-                  <Route path='/update-employee/:id' element={<EmployeeFormComponent />} />{/* http://localhost:3000/add-employee  */}
-                  <Route path='/add-employee' element={<EmployeeFormComponent />} />{/* http://localhost:3000/update-employee/1  */}
-            </Routes>
-          </div>
-          <FooterComponent/>
+        <HeaderComponent />
+        <div className="container flex-grow-1">
+          <Routes>
+            <Route path="/" exact element={<ListEmployeeComponent />} />
+            <Route path="/employees" element={<ListEmployeeComponent />} />
+            <Route path="/update-employee/:id" element={<EmployeeFormComponent />} />
+            <Route path="/add-employee" element={<EmployeeFormComponent />} />
+          </Routes>
+        </div>
+        <FooterComponent />
       </Router>
     </div>
   );
