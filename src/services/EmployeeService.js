@@ -1,30 +1,35 @@
 import axios from 'axios';
 
-const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/employees";
-const EMPLOYEE_API_CREATE_EMPLOYEE_URL = "http://localhost:8080/api/v1/add-employee";
+const axiosInstance = axios.create({
+  baseURL: "http://employeelb-72894870.ap-south-1.elb.amazonaws.com/api/v1",
+  headers: {
+    'Content-Type': 'application/json',
+  }
+});
 
-class EmployeeService{
+class EmployeeService {
 
-    getEmployees(){
-        return axios.get(EMPLOYEE_API_BASE_URL);
-    }
+  getEmployees() {
+    return axiosInstance.get('/employees');
+  }
 
-    createEmployee(employee){
-        return axios.post(EMPLOYEE_API_CREATE_EMPLOYEE_URL, employee);
-    }
+  createEmployee(employee) {
+    return axiosInstance.post('/add-employee', employee);
+  }
 
-    getEmployeeById(employeeId){
-        return axios.get(EMPLOYEE_API_BASE_URL + '/' + employeeId);
-    }
+  getEmployeeById(employeeId) {
+    return axiosInstance.get(`/employees/${employeeId}`);
+  }
 
-    updateEmployee(employeeId, employee) {
-        return axios.put(EMPLOYEE_API_BASE_URL + '/' + employeeId, employee);
-    }
+  updateEmployee(employeeId, employee) {
+    return axiosInstance.put(`/employees/${employeeId}`, employee);
+  }
 
-    deleteEmployee(employeeId) {
-        return axios.delete(EMPLOYEE_API_BASE_URL + '/' + employeeId);
-    }
-
+  deleteEmployee(employeeId) {
+    return axiosInstance.delete(`/employees/${employeeId}`);
+  }
 }
-//exporting object of this class which can be used inside a component
-export default new EmployeeService() 
+
+// exporting object of this class which can be used inside a component
+const employeeService = new EmployeeService()
+export default employeeService;
