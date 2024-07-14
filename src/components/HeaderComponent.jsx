@@ -13,7 +13,7 @@ class HeaderComponent extends React.Component {
             <div>
                 <header>
                 <nav className='navbar navbar-expand-md navbar-dark bg-dark'> 
-                <div><a href='http://localhost:3000' className='navbar-brand ms-2'>Employee Management App</a></div>
+                <div><a href='http://employeelb-72894870.ap-south-1.elb.amazonaws.com' className='navbar-brand ms-2'>Employee Management App</a></div>
                 </nav>
                 </header>
             </div>
